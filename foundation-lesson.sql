@@ -51,7 +51,32 @@ SELECT
 	, ps.Ward
 	, ps.Tariff
 FROM
-	PatientStay ps;
+	PatientStay ps
+WHERE ps.hospital = 'PRUH'
+OR ps.hospital = 'Kingston';
+
+SELECT
+	ps.PatientId
+    ,ps.AdmittedDate
+    ,ps.Hospital
+    ,ps.Ward
+    ,ps.Tariff
+FROM
+	PatientStay ps
+WHERE ps.Hospital IN ('Kingston', 'PRUH' )
+	AND ps.Ward LIKE '%Surgery'
+	AND ps.AdmittedDate Between'2024-02-27'AND'2024-03-27'
+	 ORDER BY 
+	ps.AdmittedDate DESC,
+	ps.Ward ASC
+
+
+SELECT
+	ps.PatientId
+	,ps.AdmittedDate
+FROM
+	PatientStay ps	
+
 
 /*
 some alternative WHERE clauses.  Try these out
@@ -67,15 +92,17 @@ _ means any single character
 */
 
 SELECT
-	ps.PatientId
-	, ps.AdmittedDate
-	, ps.Hospital
-	, ps.Ward
-	, ps.Tariff
+    ps.PatientId
+    , ps.AdmittedDate
+    , ps.Hospital
+    , ps.Ward
+    , ps.Tariff
 FROM
-	PatientStay ps
+    PatientStay ps
 WHERE
-	ps.Hospital IN ('Kingston', 'PRUH');
+    ps.Hospital IN ('Kingston', 'PRUH')
+	AND ps.ward like '%D%'
+
 --WHERE ps.Hospital LIKE 'Kin%'
 
 /*
